@@ -26,4 +26,3 @@ Route::middleware([
     Route::get('/dashboard', ShowPosts::class)->name('dashboard');
 });
 
-Route::get('prueba/{name}', ShowPosts::class);

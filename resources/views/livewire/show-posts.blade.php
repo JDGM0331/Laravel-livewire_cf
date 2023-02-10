@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
 
-    <h1>Hola mundo</h1>
-    {{ $name }}
+    {{ $posts }}
+
 
 </div>
