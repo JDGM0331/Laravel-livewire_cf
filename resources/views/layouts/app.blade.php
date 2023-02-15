@@ -15,6 +15,7 @@
 
         <!-- Styles -->
         @livewireStyles
+        <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free-5.15.4/css/all.min.css') }}">
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />

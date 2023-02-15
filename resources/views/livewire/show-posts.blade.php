@@ -23,14 +23,47 @@
 
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider uppercase border-b border-gray-200 bg-gray-50">
+                            <th class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider uppercase border-b border-gray-200 bg-gray-50"
+                                wire:click="order('id')"> {{-- wire:click="order()" me permite conectarme con la furnción order del componente livewire ShowPosts.php --}}
                                 ID
+
+                                @if ($sort == 'id') {{-- Identificación para el icono de ordenamiento --}}
+                                    @if ($direction == 'asc')
+                                        <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                                    @else
+                                        <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                                    @endif
+                                @else
+                                    <i class="fas fa-sort float-right mt-1"></i>
+                                @endif
                             </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider uppercase border-b border-gray-200 bg-gray-50">
+                            <th class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider uppercase border-b border-gray-200 bg-gray-50"
+                                wire:click="order('title')"> {{-- wire:click="order()" me permite conectarme con la furnción order del componente livewire ShowPosts.php --}}
                                 Title
+
+                                @if ($sort == 'title') {{-- Identificación para el icono de ordenamiento --}}
+                                    @if ($direction == 'asc')
+                                        <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                                    @else
+                                        <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                                    @endif
+                                @else
+                                    <i class="fas fa-sort float-right mt-1"></i>
+                                @endif
                             </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider uppercase border-b border-gray-200 bg-gray-50">
+                            <th class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider uppercase border-b border-gray-200 bg-gray-50"
+                                wire:click="order('content')"> {{-- wire:click="order()" me permite conectarme con la furnción order del componente livewire ShowPosts.php --}}
                                 Content
+
+                                @if ($sort == 'content') {{-- Identificación para el icono de ordenamiento --}}
+                                    @if ($direction == 'asc')
+                                        <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                                    @else
+                                        <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                                    @endif
+                                @else
+                                    <i class="fas fa-sort float-right mt-1"></i>
+                                @endif
                             </th>
                             <th scope="col" class="relative px-6 py-3">
                                 <span class="sr-only">Edit</span>
