@@ -10,11 +10,13 @@
 
         <x-table> {{-- Componente de tabla locallizada en resources/views/components/table.blade.php --}}
 
-            <div class="px-6 py-4"> {{-- sincronización con el componente de livewire para búsqueda en tiempo real --}}
+            <div class="px-6 py-4 flex items-center"> {{-- sincronización con el componente de livewire para búsqueda en tiempo real --}}
                 {{-- <input type="text" wire:model="search"> --}}
 
                 {{-- Componente de jetstream localizado en resources/views/vendor/jetstream/input/input.blade.php --}}
-                <x-jet-input class="w-full" placeholder="Escriba qué quiere buscar" type="text" wire:model="search"/>
+                <x-jet-input class="flex-1 mr-4" placeholder="Escriba qué quiere buscar" type="text" wire:model="search"/>
+
+                @livewire('create-post')
             </div>
 
             @if ($posts->count())
@@ -23,7 +25,7 @@
 
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider uppercase border-b border-gray-200 bg-gray-50"
+                            <th class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider uppercase border-b border-gray-200 bg-gray-50"
                                 wire:click="order('id')"> {{-- wire:click="order()" me permite conectarme con la furnción order del componente livewire ShowPosts.php --}}
                                 ID
 

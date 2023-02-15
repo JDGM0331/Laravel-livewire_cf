@@ -1,3 +1,6 @@
+@import 'form.css'; /* Importar el archivo para que tailwind pueda ser compilado correctamente */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
