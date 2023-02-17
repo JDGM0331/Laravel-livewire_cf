@@ -13,12 +13,32 @@
 
             <div class="mb-4">
                 <x-jet-label value="Título del post" />
-                <x-jet-input type="text" class="w-full" wire:model.defer="title"/> {{-- (wire:model="title")->sincroniza con un atributo desde el componente livewire --}}
+                <x-jet-input type="text" class="w-full" wire:model="title"/> {{-- (wire:model="title")->sincroniza con un atributo desde el componente livewire --}}
+
+                {{-- Verificando si hay un error de validación por el campo title --}}
+                {{-- @error('title') Verificando si hay un error de validación por el campo title
+                    <span>
+                    {{ $message }}
+                    </span>
+                @enderror --}}
+
+                <x-jet-input-error for="title"></x-jet-input-error> {{-- Verficar si hay un error de validación en el campo title utilizando componente de jetstream --}}
+
             </div>
 
             <div class="mb-4">
                 <x-jet-label value="Contenido del post" />
                 <textarea wire:model.defer="content" class="form-control w-full" rows="6"></textarea> {{-- Se implementa la clase form-control de tailwind que ha sido compilado desde el archivo resources/css/form.css --}}
+
+                {{-- Verificando si hay un error de validación por el campo content --}}
+                {{-- @error('content')
+                    <span>
+                    {{ $message }}
+                    </span>
+                @enderror --}}
+
+                <x-jet-input-error for="content"></x-jet-input-error> {{-- Verficar si hay un error de validación en el campo content utilizando componente de jetstream --}}
+
             </div>
 
         </x-slot>

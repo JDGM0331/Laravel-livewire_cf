@@ -12,7 +12,19 @@ class CreatePost extends Component
 
     public $title, $content; /* Para registrar un nuevo post */
 
+    protected $rules = [ /* Definir las reglas de validación */
+        'title' => 'required|max:10',
+        'content' => 'required|min:100',
+    ];
+
+    public function updated($propertyName){ /* Est método será activado cada vez que se modifique una de propiedades definidas anteriormente */
+        $this->validateOnly($propertyName); /* En el momento en que se detecte una modificación inmediatamente ejecuta las reglas de validación ya definidas (tener en cuenta para que funcione correctamente debemos eliminar el método .deferl del wire:model desde los inputs definidos) */
+    }
+
     public function save(){ /* Método para registrar un nuevo post */
+
+        $this->validate(); /* Verificar las reglas de validación ya definidas */
+
         Post::create([
             'title' => $this->title,
             'content' => $this->content
