@@ -8,7 +8,7 @@ use Livewire\Component;
 class CreatePost extends Component
 {
 
-    public $open = true; /* Permite saber en qué momento se debe abrir el modal */
+    public $open = false; /* Permite saber en qué momento se debe abrir el modal */
 
     public $title, $content; /* Para registrar un nuevo post */
 
@@ -17,6 +17,11 @@ class CreatePost extends Component
             'title' => $this->title,
             'content' => $this->content
         ]);
+
+        $this->reset(['open', 'title', 'content']); /* El modal se cierra y las propiedades title y content quedan limpias para un próximo registro */
+
+        $this->emitTo('show-posts', 'render'); /* Emitir un evento hacia otro componente ESPECÍFICO */
+        $this->emit('alert', 'El post se creó satisfactoriamente'); /* Emitir evento con un mensaje para ser recibido nativamente en JS */
     }
 
     public function render()
