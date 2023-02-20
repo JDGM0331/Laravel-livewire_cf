@@ -48,10 +48,15 @@
                 Cancelar
             </x-jet-secondary-button>
 
-            <x-jet-danger-button wire:click="save"> {{-- Se agrega la acción para registrar el nuevo post ejecutando así el método save() localizado en el componente CreatePost.php --}}
+            <x-jet-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save" class="disabled:opacity-25"> {{-- En el momento en que se destecta algún cambio en el servidor se desactiva el botón --}}
+                {{-- class="disable:opacity-25 -> Al detectar que el botón es desactivado se puede agregar ciertas clases en base a cuando suceda el comportamiento específicado --}}
+                {{-- wire:loading.class="bg-blue-500" Permite modificar las clases del elemento en cuanto se detecte un cambio en el servidor --}}
+                {{-- wire:loading-> Muestra/oculta elementos cuando se estás ejecutando alún procesos del component | wire:target="proceso" -> apunta a qué proceso se debe activar el estado loading" --}}
+                {{-- wire:loading.remove -> oculta el elemento en cuanto se detecta algún cambio especificado en el componente --}}
                 Crear post
             </x-jet-danger-button>
         </x-slot>
+
 
     </x-jet-dialog-modal>
 </div>
