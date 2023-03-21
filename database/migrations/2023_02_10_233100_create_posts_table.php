@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('content');
-
+            $table->string('image'); /* Se define el campo agregar la imagen en la base de datos */
             $table->timestamps();
         });
     }

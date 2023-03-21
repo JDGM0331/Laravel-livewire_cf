@@ -11,6 +11,16 @@
 
         <x-slot name="content">
 
+            <div wire:loading wire:target="image" class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"> {{-- Alerta para el estado de carga subida de imagen --}}
+                {{-- wire:loading wire:target="image" permiten mostrar esta alerta cuando se está cargando la imagen seleccionada --}}
+                <strong class="font-bold">¡Imagen cargando!</strong>
+                <span class="block sm:inline">Espere un momento hasta que la imagen se haya procesado.</span>
+            </div>
+
+            @if ($image) {{-- Mostrar imagen seleccionada. Tener en cuenta que cuando se selecciona previamente una imagen este va a ser guardad como archivo temporal dentro del directorio storage/app/livewire-tmp del proyecto --}}
+                <img class="mb-4" src="{{ $image->temporaryUrl() }}"> {{-- Recurpera la imagen almacenada temporalemnte para ser visualizada --}}
+            @endif
+
             <div class="mb-4">
                 <x-jet-label value="Título del post" />
                 <x-jet-input type="text" class="w-full" wire:model="title"/> {{-- (wire:model="title")->sincroniza con un atributo desde el componente livewire --}}
@@ -41,6 +51,11 @@
 
             </div>
 
+            <div>
+                <input type="file" wire:model="image" id="{{ $identificadorImage }}"> {{-- Sincronización del input con el atributo image del componente create-post. $identificadorImage recibe un número al azar y así generar un nuevo input para el correcto reseteamiento del campo de imagen --}}
+                <x-jet-input-error for="image"></x-jet-input-error> {{-- Verificación de regla de validación para la imagen --}}
+            </div>
+
         </x-slot>
 
         <x-slot name="footer">
@@ -48,7 +63,7 @@
                 Cancelar
             </x-jet-secondary-button>
 
-            <x-jet-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save" class="disabled:opacity-25"> {{-- En el momento en que se destecta algún cambio en el servidor se desactiva el botón --}}
+            <x-jet-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save, image" {{-- image detecta cuando se está cargando una imagen --}} class="disabled:opacity-25"> {{-- En el momento en que se destecta algún cambio en el servidor se desactiva el botón --}}
                 {{-- class="disable:opacity-25 -> Al detectar que el botón es desactivado se puede agregar ciertas clases en base a cuando suceda el comportamiento específicado --}}
                 {{-- wire:loading.class="bg-blue-500" Permite modificar las clases del elemento en cuanto se detecte un cambio en el servidor --}}
                 {{-- wire:loading-> Muestra/oculta elementos cuando se estás ejecutando alún procesos del component | wire:target="proceso" -> apunta a qué proceso se debe activar el estado loading" --}}
